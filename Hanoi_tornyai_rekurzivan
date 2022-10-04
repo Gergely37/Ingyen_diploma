@@ -1,0 +1,28 @@
+using System;
+
+namespace hanoi_rekurzivan
+{
+    class Program
+    {
+        private static int db = 0; // Számolja hány lépésből áll a megoldás
+        static int hanoi(int n, char honnan, char segedrud, char hova){
+            
+            if (n > 0)
+            {
+                hanoi(n - 1, honnan, hova, segedrud); // n-1 db korong átmozgatása a "segedrudra"
+                // Console.WriteLine("{0}. korongot tedd a {1} rudrol a {2} rudra!", n, honnan, hova);
+                hanoi(n - 1, segedrud, honnan, hova); // n-1 db korong átmozgatása a segédrúdról a hova rúdra
+                db++;
+            }
+            return db;
+        }
+        static void Main(string[] args)
+        {
+            int korong;
+            Console.WriteLine("Adja meg a korongok számát:\t");
+            korong = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n{0} lepesben lehetett athelyezni a korongokat\n", hanoi(korong,'1','2','3'));
+            Console.ReadKey();
+        }
+    }
+}
